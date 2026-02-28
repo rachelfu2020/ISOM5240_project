@@ -13,8 +13,21 @@ st.header("Title: Age Classification using ViT")
 # The code below should be placed in the main part of the program
 age_classifier = pipeline("image-classification", model="prithivMLmods/Age-Classification-SigLIP2")
 
-image_name = "middleagedMan.jpg"
-image_name = Image.open(image_name).convert("RGB")
+
+def main():
+    st.set_page_config(page_title="Your Image to Age Classification", page_icon="🦜")
+    st.header("Turn Your Image to Age")
+    uploaded_file = st.file_uploader("Select an Image...")
+
+    if uploaded_file is not None:
+        print(uploaded_file)
+        bytes_data = uploaded_file.getvalue()
+        with open(uploaded_file.name, "wb") as file:
+            file.write(bytes_data)
+        st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+      
+#image_name = "middleagedMan.jpg"
+#image_name = Image.open(image_name).convert("RGB")
 
 # Classify age
 age_predictions = age_classifier(image_name)
