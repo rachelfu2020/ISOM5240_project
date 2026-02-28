@@ -17,10 +17,7 @@ def imgClassifier(imgFilename, modelName):
         
         # Classify age
         age_predictions = age_classifier(imgFilename)
-        print(age_predictions)
-        #Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
-        st.write(age_predictions)
-        age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
+
 
         return age_predictions
 
