@@ -24,7 +24,7 @@ def imgClassifier():
 
         return age_predictions
 
-def main ()
+def main ():
 
         
         # Streamlit UI
