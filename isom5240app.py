@@ -1,5 +1,8 @@
 from transformers import pipeline
 from PIL import Image
+#We add below import steamlit in order to use the steamlit function 
+import streamlit as st
+
 
 # Streamlit UI
 print("Title: Age Classification using ViT")
@@ -20,3 +23,9 @@ age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True
 # Display results
 print("Predicted Age Range:")
 print(f"Age range: {age_predictions[0]['label']}")
+
+
+
+
+#We add below function of streamlit to check if the programe is Done or not
+st.write("Done")
