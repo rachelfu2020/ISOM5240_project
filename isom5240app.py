@@ -28,16 +28,10 @@ def main ():
         print("Title: Age Classification using ViT")
         #Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
         st.header("Title: Age Classification using ViT")
-        
-        # Load the age classification pipeline
-        # The code below should be placed in the main part of the program
-        age_classifier = pipeline("image-classification", model="prithivMLmods/Age-Classification-SigLIP2")
-        
-        image_name = middleagedMan.jpg
-        image_name = Image.open(image_name).convert("RGB")
-        
+
         # Classify age
-        age_predictions = age_classifier(image_name)
+        age_predictions = imgClassifier("middleagedMan.jpg","prithivMLmods/Age-Classification-SigLIP2")
+        
         print(age_predictions)
         #Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
         st.write(age_predictions)
