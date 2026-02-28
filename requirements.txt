@@ -1,3 +1,4 @@
+#requirement.txt meaning to give the requirement like versioning and other library and etc
 streamlit
-transformers
+transformers<5.0.0
 torch
