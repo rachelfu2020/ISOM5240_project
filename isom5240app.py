@@ -23,8 +23,9 @@ age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True
 # Display results
 print("Predicted Age Range:")
 print(f"Age range: {age_predictions[0]['label']}")
-
-
+#Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
+st.write("Predicted Age Range:")
+st.write(f"Age range: {age_predictions[0]['label']}")
 
 
 #We add below function of streamlit to check if the programe is Done or not
