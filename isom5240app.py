@@ -30,7 +30,7 @@ def main():
 #image_name = Image.open(image_name).convert("RGB")
 
 # Classify age
-age_predictions = age_classifier(image_name)
+age_predictions = age_classifier(uploaded_file)
 print(age_predictions)
 #Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
 st.write(age_predictions)
