@@ -6,7 +6,7 @@ classifier = pipeline("text-classification",model='isom5240ust/bert-base-uncased
 
 # Streamlit application title
 st.title("Text Classification for you")
-st.write("Classification for 6 emotions: sadness, joy, love, anger, fear, surprise")
+st.write("(Testing)Classification for 6 emotions: sadness, joy, love, anger, fear, surprise")
 
 # Text input for user to enter the text to classify
 text = st.text_area("Enter the text to classify", "")
