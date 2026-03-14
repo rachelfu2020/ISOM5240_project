@@ -1,67 +1,29 @@
-from transformers import pipeline
-from PIL import Image
 #We add below import steamlit in order to use the steamlit function 
 import streamlit as st
 
-# function parts
+from transformers import AutoModelForSequenceClassification
+from transformers import AutoTokenizer
+import torch
+import numpy as np
 
-def imgClassifier(imgFilename, modelName):
+# Testing with the saved model
+model2 = AutoModelForSequenceClassification.from_pretrained("CustomModel_yelp",
+                                                            num_labels=5)
+tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
-        
-        # Load the age classification pipeline
-        # The code below should be placed in the main part of the program
-        age_classifier = pipeline("image-classification", model=modelName)
-        
-        image_name = imgFilename 
-        image_name = Image.open(image_name).convert("RGB")
-        
-        # Classify age
-        age_predictions = age_classifier(imgFilename)
+# Tokenized testing data
+label = 4 # label = 4
+text = "dr. goldberg offers everything i look for in a general practitioner. he's nice and easy to talk to without being patronizing; he's always on time in seeing his patients; he's affiliated with a top-notch hospital (nyu) which my parents have explained to me is very important in case something happens and you need surgery; and you can get referrals to see specialists without having to see him first. really, what more do you need? i'm sitting here trying to think of any complaints i have about him, but i'm really drawing a blank."
+inputs = tokenizer(text,
+                   padding=True,
+                   truncation=True,
+                   return_tensors='pt')
 
+outputs = model2(**inputs)
+predictions = torch.nn.functional.softmax(outputs.logits, dim=-1)
+predictions = predictions.cpu().detach().numpy()
 
-        return age_predictions
+# Get the index of the largest output value
+max_index = np.argmax(predictions)
 
-def main ():
-
-        
-        # Streamlit UI
-        print("Title: Age Classification using ViT")
-        #Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
-        st.header("Title: Age Classification using ViT")
-
-        # Classify age
-        age_predictions = imgClassifier("middleagedMan.jpg","prithivMLmods/Age-Classification-SigLIP2")
-        
-        print(age_predictions)
-        #Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
-        st.write(age_predictions)
-        age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
-        
-        # Display results
-        print("Predicted Age Range:")
-        print(f"Age range: {age_predictions[0]['label']}")
-        #Since this is a steamlit application, therefore cannot just use 'Print' but using a steamlit function instead to show
-        st.write("Predicted Age Range:")
-        st.write(f"Age range: {age_predictions[0]['label']}")
-        
-        
-        #We add below function of streamlit to check if the programe is Done or not
-        st.write("Done")
-
-
-
-
-
-
-
-# main part
-# KEEP IN MIND THAT to avoid tooooo many file conflict with each other, keeping 'if __name__ == "__main__":
-if __name__ == "__main__":
-    main()
-
-
-
-
-
-
-
+print(f"The label is {label} and the predicted label is {max_index}")
