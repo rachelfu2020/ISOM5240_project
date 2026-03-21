@@ -23,22 +23,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-#@st.cache_resource
-#def load_models():
-#    """Load OCR and HF sentiment pipeline"""
-#    # OCR Reader
-#    ocr_reader = easyocr.Reader(['en'], gpu=False)
-#    
-#    # Hugging Face sentiment pipeline
-#    sentiment_pipe = pipeline(
-#        "sentiment-analysis",
-#        model="cardiffnlp/twitter-roberta-base-sentiment-latest",
-#        device=0 if torch.cuda.is_available() else -1,
-#        torch_dtype=torch.float16
-#    )
-    
-    return ocr_reader, sentiment_pipe
-
 def extract_engineering_info(text: str):
     """Parse CAD drawing text for engineering metadata"""
     # Extract scales, dimensions, titles
