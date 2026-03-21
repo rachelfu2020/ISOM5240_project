@@ -80,12 +80,14 @@ text_input = st.text_area("📄 Paste extracted text here:",
                          value=st.session_state.extracted_text,
                          height=200)
 
-# File uploader
+# Line 84 - FIXED VERSION
+max_files = 3  # Limit to 3 files max
 uploaded_files = st.file_uploader(
     "Upload CAD Drawings (JPG/PNG)", 
-    type=['jpg', 'jpeg', 'png'], 
+    type=['jpg', 'jpeg', 'png'],
     accept_multiple_files=True,
-    max_uploaded_files=max_files
+    max_uploaded_files=max_files,
+    help="Max 3 files, 500MB total limit"
 )
 
 if uploaded_files:
