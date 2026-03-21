@@ -1,7 +1,6 @@
 #requirement.txt meaning to give the requirement like versioning and other library and etc
 streamlit
 pandas
-plotly
-openpyxl  # if using Excel files
-pillow    # if using images
+plotly==5.22.0
+
 
