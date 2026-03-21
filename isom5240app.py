@@ -3,6 +3,10 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
+st.title("ISOM5240 Project")
+# Your app code continues here...
+
+
 # Page config
 st.set_page_config(
     page_title="CAD Drawing Sentiment Analyzer", 
