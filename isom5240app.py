@@ -23,19 +23,19 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-@st.cache_resource
-def load_models():
-    """Load OCR and HF sentiment pipeline"""
-    # OCR Reader
-    ocr_reader = easyocr.Reader(['en'], gpu=False)
-    
-    # Hugging Face sentiment pipeline
-    sentiment_pipe = pipeline(
-        "sentiment-analysis",
-        model="cardiffnlp/twitter-roberta-base-sentiment-latest",
-        device=0 if torch.cuda.is_available() else -1,
-        torch_dtype=torch.float16
-    )
+#@st.cache_resource
+#def load_models():
+#    """Load OCR and HF sentiment pipeline"""
+#    # OCR Reader
+#    ocr_reader = easyocr.Reader(['en'], gpu=False)
+#    
+#    # Hugging Face sentiment pipeline
+#    sentiment_pipe = pipeline(
+#        "sentiment-analysis",
+#        model="cardiffnlp/twitter-roberta-base-sentiment-latest",
+#        device=0 if torch.cuda.is_available() else -1,
+#        torch_dtype=torch.float16
+#    )
     
     return ocr_reader, sentiment_pipe
 
@@ -89,11 +89,12 @@ st.sidebar.header("⚙️ Settings")
 max_files = st.sidebar.slider("Max files to process", 1, 10, 3)
 
 # Load models
-if 'models_loaded' not in st.session_state:
-    with st.spinner("Loading OCR + Hugging Face models..."):
-        st.session_state.ocr_reader, st.session_state.sentiment_pipe = load_models()
-        st.session_state.models_loaded = True
-    st.sidebar.success("✅ Models ready!")
+if 'extracted_text' not in st.session_state:
+    st.session_state.extracted_text = ""
+
+text_input = st.text_area("📄 Paste extracted text here:", 
+                         value=st.session_state.extracted_text,
+                         height=200)
 
 # File uploader
 uploaded_files = st.file_uploader(
