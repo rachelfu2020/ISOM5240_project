@@ -1,7 +1,7 @@
 import streamlit as st
 import easyocr
 import pandas as pd
-import plotly.express as px
+import plotly.express as 
 import plotly.graph_objects as go
 from PIL import Image
 import io
