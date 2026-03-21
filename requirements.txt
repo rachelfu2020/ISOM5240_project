@@ -1,5 +1,10 @@
 #requirement.txt meaning to give the requirement like versioning and other library and etc
-streamlit
-transformers<5.0.0
-torch
-Pillow
+streamlit==1.28.0
+easyocr==1.7.1
+pandas==2.1.0
+plotly==5.17.0
+transformers==4.36.0
+torch==2.1.0
+pillow==10.0.0
+opencv-python==4.8.1.78
+accelerate==0.24.0
