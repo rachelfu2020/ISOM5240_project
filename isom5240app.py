@@ -1,14 +1,7 @@
 import streamlit as st
-import easyocr
 import pandas as pd
-import plotly.express as 
+import plotly.express as px
 import plotly.graph_objects as go
-from PIL import Image
-import io
-import re
-import torch
-from transformers import pipeline
-import time
 
 # Page config
 st.set_page_config(
